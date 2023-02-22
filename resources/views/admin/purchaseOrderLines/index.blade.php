@@ -34,7 +34,7 @@
         <tbody>
             @foreach($purchaseOrderLines as $purchaseOrderLine)
             <tr>
-                <td>{{ $purchaseOrderLine->product->product_name }}</td>
+                <td>{{ $purchaseOrderLine->product->product_name}}</td>
                 <td>{{ $purchaseOrderLine->qty }}</td>
                 <td>{{ $purchaseOrderLine->price }}</td>
                 <td>{{ $purchaseOrderLine->discount }}</td>
@@ -42,12 +42,12 @@
                 <td>{{ $purchaseOrderLine->created_at }}</td>
                 <td>{{ $purchaseOrderLine->updated_at }}</td>
                 <td>
-                    <a class="btn btn-xs btn-primary"
+                    {{-- <a class="btn btn-xs btn-primary"
                         href="{{ route('admin.purchase.order.lines.show', [$purchaseOrderLine->id]) }}"
                         data-toggle="tooltip" data-placement="top"
                         data-title="{{ __('views.admin.purchase.order.lines.index.show') }}">
                         <i class="fa fa-eye"></i>
-                    </a>
+                    </a> --}}
                     <a class="btn btn-xs btn-info"
                         href="{{ route('admin.purchase.order.lines.edit', [$purchaseOrderLine->id]) }}"
                         data-toggle="tooltip" data-placement="top"

@@ -65,11 +65,32 @@ class PurchaseOrderController extends Controller
     {
         return view('admin.purchaseOrderLines.index');
     }
-    public function getPurchaseOrderLineEdit($id)
+    public function getPurchaseOrderLineEdit(PurchaseOrderLine $purchaseOrderLine)
     {
-        return view('admin.purchaseOrderLines.index');
+        $products = Product::all();
+        return view('admin.purchaseOrderLines.edit', ["products" => $products, "purchaseOrderLine" => $purchaseOrderLine]);
     }
-    public function getPurchaseOrderLineDestroy($id)
+    public function getPurchaseOrderLineUpdate(Request $request, PurchaseOrderLine $purchaseOrderLine)
+    {
+        $validator = Validator::make($request->all(), [
+            'product' => 'required',
+            'qty' => 'required',
+            'price' => 'required',
+            'discount' => 'required',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withErrors($validator->errors());
+
+        $purchaseOrderLine->product_id = $request->post('product');
+        $purchaseOrderLine->qty = $request->post('qty');
+        $purchaseOrderLine->price = $request->post('price');
+        $purchaseOrderLine->discount = $request->post('discount');
+        $purchaseOrderLine->total = (int)$request->post('qty') * ((100 - (int)$request->post('discount')) / 100) * (int)$request->post('price');
+        $purchaseOrderLine->save();
+
+        return redirect()->intended(route('admin.purchase.order.lines'));
+    }
+    public function getPurchaseOrderLineDestroy(PurchaseOrderLine $purchaseOrderLine)
     {
         return view('admin.purchaseOrderLines.index');
     }

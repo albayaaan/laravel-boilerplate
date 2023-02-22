@@ -76,7 +76,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('purchase-order-line/create', 'PurchaseOrderController@getPurchaseOrderLineCreate')->name('purchase.order.lines.create');
     Route::post('purchase-order-line/create', 'PurchaseOrderController@postPurchaseOrderLineInsert')->name('purchase.order.lines.insert');
     Route::get('purchase-order-line/{id}', 'PurchaseOrderController@getPurchaseOrderLineShow')->name('purchase.order.lines.show');
-    Route::get('purchase-order-line/{id}/edit', 'PurchaseOrderController@getPurchaseOrderLineEdit')->name('purchase.order.lines.edit');
+    Route::get('purchase-order-line/{purchaseOrderLine}/edit', 'PurchaseOrderController@getPurchaseOrderLineEdit')->name('purchase.order.lines.edit');
+    Route::put('purchase-order-line/{purchaseOrderLine}', 'PurchaseOrderController@getPurchaseOrderLineUpdate')->name('purchase.order.lines.update');
     Route::get('purchase-order-line{id}/destroy', 'PurchaseOrderController@getPurchaseOrderLineDestroy')->name('purchase.order.lines.destroy');
 });
 
