@@ -85,7 +85,7 @@ class SocialLoginController extends Controller
     {
         $socialite = Socialite::driver($provider);
 
-        $socialUser = $socialite->user();
+        $socialUser = $socialite->stateless()->user();
 
         $user = null;
 
@@ -156,6 +156,5 @@ class SocialLoginController extends Controller
      */
     protected function socialAuthenticated($user)
     {
-
     }
 }
