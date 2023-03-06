@@ -10,6 +10,7 @@
     <option value="{{ $product->id }}">{{ $product->product_name }}</option>
     @endforeach
 </select>
+<br><br>
 <div id="product_price_range">
     <canvas class="canvasChart"></canvas>
 </div>
@@ -44,42 +45,43 @@
                 }
     });
 
-    var productPriceRange = {
-        _defaults: {
-            type: 'doughnut',
-            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-            data: {
-                labels: [
-                    "< 50000",
-                    "50000 - 99999",
-                    "100000 - 999999",
-                    "> 1000000"
-                ],
-                datasets: [{
-                    data: [],
-                    backgroundColor: [
+    const data = {
+        labels: [
+            "< 50000",
+            "50000 - 99999",
+            "100000 - 999999",
+            "> 1000000"
+        ],
+        datasets: [
+            {
+            label: 'Dataset 1',
+            data: [],
+            backgroundColor: [
                         "#3498DB",
                         "#3498DB",
                         "#9B59B6",
                         "#E74C3C",
                     ],
-                    hoverBackgroundColor: [
-                        "#36CAAB",
-                        "#49A9EA",
-                        "#B370CF",
-                        "#E95E4F",
-                    ]
-                }]
-            },
+            }
+        ]
+    };
+
+    var productPriceRange = {
+        _defaults: {
+            type: 'doughnut',
+            data: data,
             options: {
-                legend: false,
                 responsive: true,
                 plugins: {
-                    legend: {
-                        position: 'top',
-                    }
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Doughnut Chart'
                 }
-            }
+                }
+            },
         },
         init: function ($el) {
             var self = this;
