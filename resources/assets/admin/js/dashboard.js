@@ -101,7 +101,7 @@
             var self = this;
 
             $.ajax({
-                url: 'admin/dashboard/log-chart',
+                url: 'dashboard/log-chart',
                 data: {start: start, end: end},
                 success: function (response) {
                     var data = {};
@@ -186,7 +186,7 @@
             $el = $($el);
 
             $.ajax({
-                url: 'admin/dashboard/registration-chart',
+                url: 'dashboard/registration-chart',
                 success: function (response) {
                     $.each($el.find('.tile_label'), function () {
                         self._defaults.data.labels.push($(this).text());
